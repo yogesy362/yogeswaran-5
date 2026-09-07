@@ -1,0 +1,54 @@
+name: CSS3 Multi-Column Layout Autograding
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  autograde:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Test 1 - Heading
+        run: npx jest -t "h1 exists"
+
+      - name: Test 2 - Columns Class
+        run: npx jest -t "columns class exists"
+
+      - name: Test 3 - Column Count
+        run: npx jest -t "column-count is 3"
+
+      - name: Test 4 - Column Gap
+        run: npx jest -t "column-gap is 30px"
+
+      - name: Test 5 - Column Rule
+        run: npx jest -t "column-rule exists"
+
+      - name: Test 6 - Padding
+        run: npx jest -t "padding is 15px"
+
+      - name: Test 7 - Background
+        run: npx jest -t "background color white"
+
+      - name: Test 8 - Text Align
+        run: npx jest -t "text-align justify"
+
+      - name: Test 9 - Heading Color
+        run: npx jest -t "h1 color darkblue"
+
+      - name: Test 10 - Column Span
+        run: npx jest -t "column-span all"
